@@ -120,7 +120,10 @@ export default function App() {
 				<div className='header'>hey there! gm 👋</div>
 
 				<div className='bio'>I'm Vijeth and I build web apps!</div>
-				<div className='bio'> Connect your Ethereum wallet and wave at me!</div>
+				<div className='bio'>
+					{" "}
+					Connect your Polygon (Testnet) wallet and wave at me!
+				</div>
 				<input
 					type='text'
 					style={{ marginTop: "16px" }}
