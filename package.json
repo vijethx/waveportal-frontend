@@ -7,14 +7,22 @@
 	"license": "MIT",
 	"private": false,
 	"dependencies": {
+		"@chakra-ui/react": "^2.2.3",
+		"@emotion/react": "^11.9.3",
+		"@emotion/styled": "^11.9.3",
+		"@rainbow-me/rainbowkit": "^0.4.2",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.3.2",
 		"@testing-library/user-event": "^7.1.2",
 		"dotenv": "^16.0.1",
 		"ethers": "^5.4.4",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
-		"react-scripts": "3.2.0"
+		"framer-motion": "4.1.17",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-icons": "^4.4.0",
+		"react-scripts": "3.2.0",
+		"truncate-eth-address": "^1.0.2",
+		"wagmi": "^0.5.9"
 	},
 	"scripts": {
 		"start": "react-scripts start",
