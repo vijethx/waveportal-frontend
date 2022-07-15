@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import truncateEthAddress from "truncate-eth-address";
 import {
@@ -16,8 +16,7 @@ import {
   Input,
   Flex,
   Spacer,
-  Grid,
-  GridItem,
+  SimpleGrid,
   useDisclosure,
   Collapse,
 } from "@chakra-ui/react";
@@ -26,15 +25,16 @@ import abi from "./utils/WavePortal.json";
 import ConnectBtn from "./ConnectBtn";
 import { useAccount, useContract, useSigner } from "wagmi";
 import { ethers } from "ethers";
+import useToastHook from "./useToastHook";
 
 export default function Wave() {
   const { isConnected } = useAccount();
   const [allWaves, setAllWaves] = useState([]);
   const [waverMessage, setWaverMessage] = useState("gm");
   const { data: signer } = useSigner();
+  const [state, newToast] = useToastHook();
 
   const { isOpen, onToggle } = useDisclosure();
-  const viewRef = useRef();
 
   const contractAddress = "0xDACfe2375AB4f4Bf28F434aC3Cb950ee5D9f09C0";
   const contractABI = abi.abi;
@@ -72,8 +72,13 @@ export default function Wave() {
 
     const waveTxn = await wavePortalContract.wave(waverMessage);
     console.log("Mining...", waveTxn.hash);
+    newToast({ message: "Mining in progress", status: "success" });
     await waveTxn.wait();
     console.log("Mined...", waveTxn.hash);
+    newToast({
+      message: "Your wave is mined to the blockchain",
+      status: "success",
+    });
     count = await wavePortalContract.getTotalWaves();
     console.log("Retrieved total wave count....", count.toNumber());
   };
@@ -170,7 +175,7 @@ export default function Wave() {
             {isConnected ? (
               <>
                 <Input
-                  width={"xl"}
+                  width={["sm", "md", "xl"]}
                   name='waverMessage'
                   placeholder='gm'
                   onChange={(e) => setWaverMessage(e.target.value)}
@@ -225,19 +230,17 @@ export default function Wave() {
                   gm history
                 </Text>
                 <Spacer />
-                <Button onClick={onToggle} finalFocusRef={viewRef}>
-                  {isOpen ? "Hide" : "Show"}
-                </Button>
+                <Button onClick={onToggle}>{isOpen ? "Hide" : "Show"}</Button>
               </Flex>
               <Collapse in={isOpen} animateOpacity>
                 <Box mt='4'>
-                  <Grid templateColumns='repeat(3, 1fr)' gap={5}>
+                  <SimpleGrid columns={[1, 1, 2, 3]} spacing={5}>
                     {allWaves.map((wave, index) => {
                       const temp = wave.timestamp.toString().split(" ");
                       const time1 = temp[4].slice(0, 5);
                       const waveTime = `${temp[1]} ${temp[2]}, ${time1}`;
                       return (
-                        <GridItem
+                        <Box
                           w='100%'
                           bg='purple.50'
                           py={4}
@@ -261,10 +264,10 @@ export default function Wave() {
                               <Text fontSize={"sm"}>&nbsp;{waveTime}</Text>
                             </Flex>
                           </Flex>
-                        </GridItem>
+                        </Box>
                       );
                     })}{" "}
-                  </Grid>
+                  </SimpleGrid>
                 </Box>
               </Collapse>
             </>
@@ -272,7 +275,7 @@ export default function Wave() {
             ""
           )}
         </Stack>
-        <Stack pt={"25px"} ref={viewRef}>
+        <Stack pt={"25px"}>
           <Text align={"center"}>
             Design by{" "}
             <Link
