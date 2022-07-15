@@ -1,11 +1,44 @@
-# buildspace Wave Portal 👋 
+# WavePortal 2.0
 
-### **Welcome!**
-To get started with this course, clone this repo and follow these commands:
+Send waves on the blockchain!
 
-1. Run `npm install` at the root of your directory
-2. Run `npm run start` to start the project
-3. Start coding!
+## What's new?
 
-### **Questions?**
-Have some questions make sure you head over to your [buildspace Dashboard](https://app.buildspace.so/courses/CO02cf0f1c-f996-4f50-9669-cf945ca3fb0b) and link your Discord account so you can get access to helpful channels and your instructor!
+- Multi Wallet Support w/ Rainbowkit
+- User friendly UI w/ Chakra UI
+- Responsive Design
+
+## Screenshots
+
+![Old UI](./public/old-ui.png)
+![New UI](./public/new-ui.png)
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/vijethx/waveportal-frontend
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  yarn
+```
+
+Start the server
+
+```bash
+  yarn start
+```
+
+## Feedback
+
+If you have any feedback, either create an issue in the repo or reach out to me on [Twitter]('https://twitter.com/vijethx')
