@@ -41,4 +41,4 @@ Start the server
 
 ## Feedback
 
-If you have any feedback, either create an issue in the repo or reach out to me on [Twitter]('https://twitter.com/vijethx')
+If you have any feedback, either create an issue in the repo or reach out to me on [Twitter](https://twitter.com/vijethx)
